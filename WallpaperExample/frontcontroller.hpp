@@ -10,8 +10,6 @@ public:
   Q_INVOKABLE void generateWallpaper() const;
 
 
-signals:
-
 };
 
 

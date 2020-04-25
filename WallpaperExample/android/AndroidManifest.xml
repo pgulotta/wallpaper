@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <manifest package="com.example.wallpaper" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.00" android:versionCode="100" android:installLocation="auto">
-    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28"/>
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="29"/>
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
          Remove the comment if you do not require these default permissions. -->
@@ -12,7 +14,7 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="Wallpaper Example" android:extractNativeLibs="true" android:usesCleartextTraffic="true">
+    <application android:usesCleartextTraffic="true" android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="Wallpaper Example" android:extractNativeLibs="true">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="-- %%INSERT_APP_NAME%% --" android:screenOrientation="unspecified" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -84,5 +86,4 @@
 
     </application>
 
-<uses-permission android:name="android.permission.SET_WALLPAPER"/>
 </manifest>

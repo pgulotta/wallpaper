@@ -16,30 +16,35 @@ public final class WallpaperGenerator implements Runnable
   public static final String ID = "WallpaperGenerator";
   public static Context mContext;
 
-  public static void generateWallpaper(Context context)
-  {
-    try {
-      Thread thread = new Thread( new WallpaperGenerator( context ) );
-      thread.start();
-      thread.join();
-      Log.i( ID, "WallpaperGenerator.generateWallpaper: set wallpaper " );
-    } catch ( Exception e ) {
-      e.printStackTrace();
-    }
-  }
-
   public WallpaperGenerator( Context context )
   {
     mContext = context;
   }
 
+  public static void generateWallpaper( Context context )
+  {
+    try {
+      Thread thread = new Thread( new WallpaperGenerator( context ) );
+      thread.start();
+      thread.join();
+      Log.i( ID, "WallpaperGenerator.generateWallpaper: wallpaper set" );
+    } catch ( Exception e ) {
+      e.printStackTrace();
+    }
+  }
+
   @Override
   public void run()
   {
+    if ( mContext == null ) {
+      Log.e( ID, "WallpaperGenerator.setWallpaper: run is null" );
+      return;
+    }
+
     try {
       byte[] array = getWallpaper();
 
-      if ( array.length == 0 ) {
+      if ( array == null || array.length == 0 ) {
         Log.e( ID, "WallpaperGenerator.run failed. Wallpaper array is empty" );
         return;
       }
@@ -104,7 +109,7 @@ public final class WallpaperGenerator implements Runnable
   {
     try {
 
-      if ( array.length == 0 ) {
+      if ( array == null || array.length == 0 ) {
         Log.e( ID, "WallpaperGenerator.setWallpaper:  array is empty" );
         return;
       }
@@ -115,11 +120,6 @@ public final class WallpaperGenerator implements Runnable
 
       if ( destinationBitmap == null ) {
         Log.e( ID, "WallpaperGenerator.setWallpaper: destinationBitmap = null" );
-        return;
-      }
-
-      if ( mContext == null ) {
-        Log.e( ID, "WallpaperGenerator.setWallpaper: mContext is null" );
         return;
       }
 
@@ -138,19 +138,9 @@ public final class WallpaperGenerator implements Runnable
     } catch ( Exception ex ) {
       ex.printStackTrace();
     }
-
   }
-
 }
 
-//   http://127.0.0.1:60564/test?lines
-//   http://127.0.0.1:60564/test?quasiPeriodicStripes
-//   http://127.0.0.1:60564/test?quasiTrap
-//   http://127.0.0.1:60564/test?quasiTrapPoly
-//   http://127.0.0.1:60564/test?walk2
-//   http://127.0.0.1:60564/test?trap
-//   http://127.0.0.1:60564/test?stripes
-//   http://127.0.0.1:60564/test?squiggles
 
 
 
