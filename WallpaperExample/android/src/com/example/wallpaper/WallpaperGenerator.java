@@ -139,6 +139,21 @@ public final class WallpaperGenerator implements Runnable
       ex.printStackTrace();
     }
   }
+
+  public static void generateWallpaper( )
+  {
+    Log.e( ID, "WallpaperGenerator.setWallpaper called" );
+    final String REQUEST = "http://65.60.187.8:60564/wallpaper";
+
+    try {
+      final WallpaperManager wallpaperManager =  WallpaperManager
+                                                 .getInstance( mContext.getApplicationContext() );
+      InputStream ins = new URL( REQUEST ).openStream();
+      wallpaperManager.setStream( ins );
+    } catch ( Exception ex ) {
+      ex.printStackTrace();
+    }
+  }
 }
 
 
