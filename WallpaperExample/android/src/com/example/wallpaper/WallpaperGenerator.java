@@ -148,8 +148,20 @@ public final class WallpaperGenerator implements Runnable
     try {
       final WallpaperManager wallpaperManager =  WallpaperManager
                                                  .getInstance( mContext.getApplicationContext() );
-      InputStream ins = new URL( REQUEST ).openStream();
-      wallpaperManager.setStream( ins );
+
+      if ( wallpaperManager == null ) {
+        Log.e( ID, "WallpaperGenerator.generateWallpaper: wallpaperManager = null" );
+        return;
+      }
+
+      InputStream stream = new URL( REQUEST ).openStream();
+
+      if ( stream == null ) {
+        Log.e( ID, "WallpaperGenerator.generateWallpaper:  stream= null" );
+        return;
+      }
+
+      wallpaperManager.setStream( stream );
     } catch ( Exception ex ) {
       ex.printStackTrace();
     }
