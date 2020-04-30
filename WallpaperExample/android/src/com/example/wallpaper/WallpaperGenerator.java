@@ -142,7 +142,6 @@ public final class WallpaperGenerator implements Runnable
 
   public static void generateWallpaper( )
   {
-    Log.e( ID, "WallpaperGenerator.setWallpaper called" );
     final String REQUEST = "http://65.60.187.8:60564/wallpaper";
 
     try {
